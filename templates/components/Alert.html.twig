@@ -1,0 +1,8 @@
+<div {{ attributes.defaults({
+  'class': 'shadow-sm fade show alert alert-dismissible alert-' ~ type,
+  'role': 'alert',
+  'style': 'max-width: 400px;'
+}) }} >
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>

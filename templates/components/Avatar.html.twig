@@ -1,0 +1,29 @@
+{% if size == 'small' %}
+  {% set style = 'width: 40px; height: 40px; font-size: 1em;' %}
+{% elseif size == 'medium' %}
+  {% set style = 'width: 80px; height: 80px; font-size: 2em;' %}
+{% else %}
+  {% set style = 'width: 120px; height: 120px; font-size: 3em;' %}
+{% endif %}
+
+
+<div {{ attributes }}>
+    {% if not avatarUrl %}
+      <div  class="p-3 rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
+            style="{{ style }}">
+        <span>{{ username|split(' ')|map(n => n|first)|join|upper }}</span>
+      </div>
+    {% else %}
+      {% if avatarUrl|contains('https://') %}
+        <img  src="{{ avatarUrl }}" 
+              class="img-fluid rounded-circle" 
+              style="{{ style ~ 'object-fit: contain;' }}">
+      {% else %}
+        <img  src="{{ 'images/avatars/' ~ avatarUrl }}" 
+              class="img-fluid rounded-circle" 
+              style="{{ style ~ 'object-fit: contain;' }}">
+      {% endif %}
+      
+    {% endif %}
+    
+</div>

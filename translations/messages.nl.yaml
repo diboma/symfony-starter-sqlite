@@ -1,0 +1,92 @@
+Add a product: Voeg een product toe
+add: toevoegen
+Already have an account?: Heb je al een account?
+at least: minstens
+at most: maximaal
+avatar: avatar
+back: terug
+cancel: annuleren
+category: categorie
+Change your password: Wijzig je wachtwoord
+Change your profile: Wijzig je profiel
+characters: tekens
+Choose an owner: Kies een eigenaar
+confirmPassword: bevestig wachtwoord
+Delete product: Verwijder product
+description: omschrijving
+Edit product: Wijzig product
+edit: bewerken
+email: e-mail
+email_domain_error: 'Gebruik jouw e-mail van {{ domain }}'
+Enter your email address, and we will send you a link to reset your password.: Voer je e-mailadres in en we sturen je een link om je wachtwoord te herstellen.
+File size is too large: Bestandsgrootte is te groot
+File type not allowed: Bestandstype niet toegestaan
+firstName: voornaam
+forgot_password: wachtwoord vergeten
+home: home
+If you don't receive an email please check your spam folder: Als je geen e-mail ontvangt, controleer dan je spamfolder
+Image URL: URL van de afbeelding
+image: afbeelding
+Invalid credentials: Ongeldige inloggegevens
+lastName: familienaam
+Link sent: Link verzonden
+login: inloggen
+logout: uitloggen
+name: naam
+new_password: nieuw wachtwoord
+next: volgende
+No products yet: Geen producten
+no_account: geen account
+no: nee
+Not Found: Niet gevonden
+old_password: oud wachtwoord
+or: of
+owner: eigenaar
+Password updated: Je wachtwoord werd gewijzigd
+password_confirm: wachtwoord bevestigen
+Password reset: Wachtwoordherstel
+password: wachtwoord
+Passwords do not match: Wachtwoorden komen niet overeen
+Please enter a category: Voer een categorie in
+Please enter a description: Voer een omschrijving in
+Please enter a name: Voer een naam in
+Please enter a password: Voer een wachtwoord in
+Please enter a price: Voer een prijs in
+Please enter a token: Voer een code in
+Please enter a valid email address: Voer een geldig e-mailadres in
+Please enter a valid URL: Voer een geldige URL in
+Please enter an email address: Voer een e-mailadres in
+Please enter an image: Voer een afbeelding in
+Please enter an owner: Voer een eigenaar in
+Please fill in all fields: Vul alle velden in
+Please select a file: Selecteer een bestand
+previous: vorige
+price: prijs
+product: product
+products: producten
+profile: profiel
+register: registreren
+remember_me: onthoud mij
+repeat_password: herhaal wachtwoord
+Reset your password: Wijzig je wachtwoord
+save: opslaan
+send: verzenden
+Send password reset email: Verstuur e-mail
+Something went wrong verifying your email: Er is iets misgegaan bij het verifiëren van je e-mailadres
+submit: verzenden
+The password fields must match: Wachtwoorden komen niet overeen
+This link will expire in: Deze link verloopt over
+token: code
+Token is expired: Code is verlopen
+Token is invalid: Code is ongeldig
+try again: probeer opnieuw
+username: gebruikersnaam
+verify: verifiëren
+Verify email: Bevestig e-mail
+Verify your email: Bevestig je e-mailades
+We have sent you an email that contains a link you can use to reset your password.: We hebben je een e-mail gestuurd met een link waarmee je je wachtwoord kunt herstellen.
+yes: ja
+You must be logged in to access this page.: U moet ingelogd zijn om deze pagina te bekijken.
+Your image URL should have {{ limit }} characters or less: De URL mag maximum {{ limit }} tekens bevatten
+Your password is not long enough: Het wachtwoord is te kort
+Your password should be at least {{ limit }} characters: Het wachtwoord moet ten minste {{ limit }} tekens bevatten

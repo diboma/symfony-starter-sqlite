@@ -1,0 +1,157 @@
+<div {{ attributes.defaults({ 'class': 'container row gap-4 gap-lg-5 justify-content-center'}) }}>
+    
+    {# Alert #}
+    {% if isShowingAlert %}
+      <twig:Alert type="{{ alertType }}" message="{{ alertMessage }}"/>
+    {% endif %}    
+    
+    {# PROFILE CARD #}
+    <div class="card shadow p-3 mx-auto mx-sm-0" style="width: 320px">
+
+      <h3 class="text-center mb-4">{{ 'Change your profile'|trans|capitalize }}</h3>
+
+      {# Avatar #}
+      <div class="position-relative mx-auto mb-3 d-flex justify-content-center align-items-center">
+        {% if not avatarUrl %}
+          <twig:Avatar size="large" username="{{ firstName ~ ' ' ~ lastName }}"/>
+        {% else %}
+          <twig:Avatar size="large" avatarUrl="{{ avatarUrl }}"/>
+        {% endif %}
+
+        <button class="p-0 btn btn-link position-absolute bottom-0" 
+                data-action="live#action"
+                data-live-action-param="prevent|toggleIsEditingAvatar"
+                style="cursor: pointer; right: -.75rem">
+          {{ ux_icon('lucide:edit', { 'style': 'font-size: 1.5em;' }) }}
+        </button>      
+      </div>
+    
+      {# Avatar upload #}
+      {% if isEditingAvatar %}
+        <div class="my-3">
+          <input type="file" name="avatar" id="avatar" class="form-control mb-3" accept="image/*">
+          <twig:Button  variant="btn-warning"
+                        label="save"
+                        icon="lucide:circle-plus"
+                        data-action="live#action"
+                        data-live-action-param="prevent|files(avatar)|saveAvatar"
+                        class="mt-2 mb-3 w-100"/>
+          <twig:Button  variant="btn-outline-dark"
+                        label="cancel"
+                        icon="lucide:circle-arrow-left"
+                        data-action="live#action"
+                        data-live-action-param="prevent|toggleIsEditingAvatar "
+                        class="mt-1 mb-3 w-100"/>
+        </div>
+      {% endif %}
+
+      {# Profile #}
+      <div class="mb-3">
+        <label for="firstName" class="form-label">
+          {{ 'firstName'|trans|capitalize }}
+        </label>
+        <input  type="text" 
+                data-model="firstName"
+                {% if not isEditingProfile %}disabled{% endif %}              
+                class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label for="lastName" class="form-label">
+          {{ 'lastName'|trans|capitalize }}
+        </label>
+        <input  type="text" 
+                data-model="lastName"
+                {% if not isEditingProfile %}disabled{% endif %}              
+                class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">
+          {{ 'email'|trans|capitalize }}
+        </label>
+        <input  type="text" 
+                data-model="email"
+                {% if not isEditingProfile %}disabled{% endif %}              
+                class="form-control">
+      </div>
+
+      {% if not isEditingProfile %}
+        <twig:Button  variant="btn-primary"
+                      label="edit"
+                      icon="lucide:edit"
+                      data-action="live#action"
+                      data-live-action-param="prevent|toggleisEditingProfile "
+                      class="my-3 w-100" />
+      {% else %}     
+        <div class="mt-3">
+          <twig:Button  variant="btn-warning"
+                        label="save"
+                        icon="lucide:circle-plus"
+                        data-action="live#action"
+                        data-live-action-param="prevent|saveProfile"
+                        class="mb-3 w-100"/>
+
+          <twig:Button  variant="btn-outline-dark"
+                        label="cancel"
+                        icon="lucide:circle-arrow-left"
+                        data-action="live#action"
+                        data-live-action-param="prevent|toggleisEditingProfile "
+                        class="mb-3 w-100"/>
+        </div>
+      {% endif %}    
+    </div>
+
+    {# PASSWORD CARD #}
+    <div class="card shadow p-3 mx-auto mx-sm-0" style="width: 320px">
+
+      <h3 class="text-center mb-4">{{ 'Change your password'|trans|capitalize }}</h3>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">
+          {{ 'password'|trans|capitalize }}
+        </label>
+        <input  type="password" 
+                data-model="password"
+                {% if not isEditingPassword %}disabled{% endif %}              
+                class="form-control">
+        <span class="form-text d-block">{{ 'at least'|trans|capitalize }} {{passwordMinLength}} {{ 'characters'|trans|capitalize }}</span>
+      </div>
+
+      <div class="mb-3">
+        <label for="passwordConfirm" class="form-label">
+          {{ 'confirmPassword'|trans|capitalize }}
+        </label>
+        <input  type="password" 
+                data-model="passwordConfirm"
+                {% if not isEditingPassword %}disabled{% endif %}              
+                class="form-control">
+      </div>
+
+      {% if not isEditingPassword %}
+        <twig:Button  variant="btn-primary"
+                      label="edit"
+                      icon="lucide:edit"
+                      data-action="live#action"
+                      data-live-action-param="prevent|toggleIsEditingPassword "
+                      class="my-3 w-100" />
+      {% else %}
+        <div class="mt-3">
+          <twig:Button  variant="btn-warning"
+                        label="save"
+                        icon="lucide:circle-plus"
+                        data-action="live#action"
+                        data-live-action-param="prevent|savePassword"
+                        class="mb-3 w-100"/>
+
+          <twig:Button  variant="btn-outline-dark"
+                        label="cancel"
+                        icon="lucide:circle-arrow-left"
+                        data-action="live#action"
+                        data-live-action-param="prevent|toggleIsEditingPassword "
+                        class="mb-3 w-100"/>
+        </div>
+      {% endif %}    
+    </div>
+
+</div>

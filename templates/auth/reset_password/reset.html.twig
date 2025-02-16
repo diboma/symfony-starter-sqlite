@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% from "macros/forms.html.twig" import error_class %}
+
+{% block title %}{{ 'Password reset'|trans }}{% endblock %}
+
+{% block body %}
+
+  <div class="card shadow p-3 mx-auto" style="max-width: 320px">
+
+    <h1 class="h3 mb-3 font-weight-normal text-center">{{ 'Reset your password'|trans|capitalize }}</h1>
+
+    {{ form_start(resetForm) }}
+
+      <input type="hidden" name="_csrf_token"
+             value="{{ csrf_token('authenticate') }}">
+      
+      {# {{ form_row(resetForm.plainPassword) }} #}
+
+      <div class="mb-3">
+        {{ form_label(resetForm.plainPassword.first) }}
+        {{ form_widget(resetForm.plainPassword.first,  
+            {
+              'attr': {
+                'class': 'form-control' ~ ' ' ~ error_class(resetForm.plainPassword.first.vars.errors)
+              }
+            }
+        )}}
+        <div class="form-error">
+          {{ form_errors(resetForm.plainPassword.first) }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        {{ form_label(resetForm.plainPassword.second) }}
+        {{ form_widget(resetForm.plainPassword.second,  
+            {
+              'attr': {
+                'class': 'form-control' ~ ' ' ~ error_class(resetForm.plainPassword.second.vars.errors)
+              }
+            }
+        )}}
+        <div class="form-error">
+          {{ form_errors(resetForm.plainPassword.second) }}
+        </div>
+      </div>
+
+
+      <twig:Button type="submit"
+                   variant="btn-primary"
+                   class="mt-4 mb-3 w-100"
+                   label="{{ 'send'|trans }}"/>
+
+    {{ form_end(resetForm) }}
+
+  </div>
+
+{% endblock %}

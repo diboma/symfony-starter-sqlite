@@ -1,0 +1,12 @@
+{
+  "html.format.wrapAttributes": "preserve-aligned",
+  "html.format.wrapLineLength": 120,
+  "html.format.preserveNewLines": true,
+  "files.associations": {
+    "*.html": "twig"
+  },
+  "[twig]": {
+    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.formatOnSave": true
+  }
+}

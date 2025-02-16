@@ -1,0 +1,9 @@
+twig:
+    file_name_pattern: '*.twig'
+    globals:
+        APPNAME: '%app.name%'
+        NAVITEMS: '%app.navItems%'
+
+when@test:
+    twig:
+        strict_variables: true

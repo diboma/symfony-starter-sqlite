@@ -1,0 +1,20 @@
+{% if href %}
+
+  <a href="{{ href }}" {{ attributes.defaults({
+    'class': 'shadow-sm d-flex align-items-center justify-content-center ' ~ (icon and label ? 'gap-2 ' : '') ~ 'btn ' ~ variant,
+  })  }}>
+    {% if icon %}{{ ux_icon(icon, {'style': 'font-size: 1.5em'}) }}{% endif %}
+    <span class="d-none d-sm-block">{{ label|trans|capitalize }}</span>
+  </a>
+
+{% else %}
+
+  <button {{ attributes.defaults({
+    'class': 'shadow-sm d-flex align-items-center justify-content-center ' ~ (icon and label ? 'gap-2 ' : '') ~ 'btn ' ~ variant,
+    'type': type
+  }) }}>
+    {% if icon %}{{ ux_icon(icon, {'style': 'font-size: 1.5em'}) }}{% endif %}
+    <span>{{ label|trans|capitalize }}</span>
+  </button>
+
+{% endif %}

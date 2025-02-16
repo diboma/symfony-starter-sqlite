@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}{% endblock %} | {{ APPNAME }}
+		</title>
+
+		<link	rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+
+    {# Bootstrap SCSS #}
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
+    {% endblock %}
+
+    {# Scripts #}
+ 		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+
+	<body>
+
+    <main class="container py-5 position-relative">
+		  {% block body %}{% endblock %}
+    </main>
+
+	</body>
+
+</html>

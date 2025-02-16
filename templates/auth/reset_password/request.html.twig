@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% from "macros/forms.html.twig" import error_class %}
+
+{% block title %}{{ 'Password reset'|trans|capitalize }}{% endblock %}
+
+{% block body %}
+
+  <div class="card shadow p-3 mx-auto" style="max-width: 320px">
+
+    <h1 class="h3 mb-3 font-weight-normal text-center">{{ 'Reset your password'|trans|capitalize }}</h1>
+    
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <twig:Alert type="danger" message="{{ flash_error }}" />
+    {% endfor %}
+
+    <div class="mb-3 form-text">
+      {{ 'Enter your email address, and we will send you a link to reset your password.'|trans }}
+    </div>
+
+    {{ form_start(requestForm) }}
+
+      <input type="hidden" name="_csrf_token"
+             value="{{ csrf_token('authenticate') }}">
+      
+      <div class="mb-3">
+        {{ form_label(requestForm.email) }}
+        {{ form_widget(requestForm.email,  
+            {
+              'attr': {
+                'class': 'form-control' ~ ' ' ~ error_class(requestForm.email.vars.errors)
+              }
+            }
+        )}}
+        <div class="form-error">
+          {{ form_errors(requestForm.email) }}
+        </div>
+      </div>
+    
+      <twig:Button type="submit"
+                   variant="btn-primary"
+                   class="mt-4 mb-3 w-100"
+                   label="{{ 'Send password reset email'|trans }}"/>
+
+    {{ form_end(requestForm) }}
+  
+  </div>
+
+{% endblock %}
