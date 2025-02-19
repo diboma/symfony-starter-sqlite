@@ -21,7 +21,7 @@ final class ProfileForm
 {
   use DefaultActionTrait;
 
-  private User $user;
+  private ?User $user = null;
 
   /**
    * ALERT MESSAGE STATE
@@ -88,7 +88,11 @@ final class ProfileForm
     private TranslatorInterface $translator,
     private UserPasswordHasherInterface $userPasswordHasher,
   ) {
-    $this->user = $this->security->getUser();
+    $user = $this->security->getUser();
+    if (!$user instanceof \App\Entity\User\User) {
+      throw new \RuntimeException('User is not authenticated or is not of type App\Entity\User\User.');
+    }
+    $this->user = $user;
     $this->setProfileDefaults($this->user);
     $this->passwordMinLength = $this->params->get('password.minLength');
   }

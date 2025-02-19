@@ -13,13 +13,14 @@ class Product
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
-  private ?int $id = null;
+  /** @phpstan-var int */
+  private int $id;
 
   #[ORM\Column(length: 255)]
-  private ?string $name = null;
+  private string $name;
 
   #[ORM\Column]
-  private ?int $price = null;
+  private int $price;
 
   #[ORM\ManyToOne(inversedBy: 'products')]
   private ?User $owner = null;

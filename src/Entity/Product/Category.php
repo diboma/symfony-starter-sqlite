@@ -2,10 +2,10 @@
 
 namespace App\Entity\Product;
 
-use App\Repository\CategoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use App\Repository\Category\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -13,10 +13,11 @@ class Category
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
-  private ?int $id = null;
+  /** @phpstan-var int */
+  private int $id;
 
   #[ORM\Column(length: 255)]
-  private ?string $name = null;
+  private string $name;
 
   /**
    * @var Collection<int, Product>

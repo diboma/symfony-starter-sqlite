@@ -7,7 +7,7 @@ use App\Entity\Product\Product;
 use App\Entity\Product\Category;
 use App\DataFixtures\UserFixtures;
 use App\Repository\User\UserRepository;
-use App\Repository\Product\CategoryRepository;
+use App\Repository\Category\CategoryRepository;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Contracts\HttpClient\HttpClientInterface;

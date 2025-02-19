@@ -16,8 +16,14 @@ class UserToken
   #[ORM\Column(length: 255)]
   private ?string $token = null;
 
-  #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-  private ?\DateTime $createdAt = null;
+  #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+  private \DateTimeImmutable $createdAt;
+
+  #[ORM\PrePersist]
+  public function setCreatedAtValue(): void
+  {
+    $this->createdAt = new \DateTimeImmutable();
+  }
 
   public function getEmail(): ?string
   {
@@ -43,12 +49,12 @@ class UserToken
     return $this;
   }
 
-  public function getCreatedAt(): ?\DateTimeInterface
+  public function getCreatedAt(): \DateTimeImmutable
   {
     return $this->createdAt;
   }
 
-  public function setCreatedAt(\DateTimeInterface $createdAt): static
+  public function setCreatedAt(\DateTimeImmutable $createdAt): static
   {
     $this->createdAt = $createdAt;
 

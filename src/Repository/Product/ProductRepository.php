@@ -17,7 +17,8 @@ class ProductRepository extends ServiceEntityRepository
     parent::__construct($registry, Product::class);
   }
 
-  public function paginate(int $currentPage = 1, int $limit = 10)
+  /** @return Paginator<Product> */
+  public function paginate(int $currentPage = 1, int $limit = 10): Paginator
   {
     $query = $this->createQueryBuilder('e')
       ->orderBy('e.id', 'DESC')

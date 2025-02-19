@@ -31,8 +31,6 @@ class ResetPasswordRequestFormType extends AbstractType
           new Length([
             'max' => 255,
             'maxMessage' => $this->translator->trans('Your email should have {{ limit }} characters or less'),
-            // max length allowed by Symfony for security reasons
-            'max' => 4096,
           ]),
           // new Regex([
           //   'pattern' => '/^[a-zA-Z0-9._%+-]+@sumocoders\.be$/',

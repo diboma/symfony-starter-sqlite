@@ -29,8 +29,6 @@ class VerifyEmailFormType extends AbstractType
           new Length([
             'max' => 255,
             'maxMessage' => $this->translator->trans('Your email should have {{ limit }} characters or less'),
-            // max length allowed by Symfony for security reasons
-            'max' => 4096,
           ]),
         ],
       ])

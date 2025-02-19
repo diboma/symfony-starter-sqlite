@@ -20,12 +20,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegistrationController extends AbstractController
 {
-  private $logger;
 
-  public function __construct(LoggerInterface $logger)
-  {
-    $this->logger = $logger;
-  }
+  public function __construct(private LoggerInterface $logger) {}
 
   #[Route('/register', name: 'app_register')]
   public function register(
@@ -65,7 +61,7 @@ class RegistrationController extends AbstractController
       $userToken = new UserToken();
       $userToken->setEmail($user->getEmail());
       $userToken->setToken(uniqid());
-      $userToken->setCreatedAt(new \DateTime());
+      $userToken->setCreatedAt(new \DateTimeImmutable());
       $entityManager->persist($userToken);
 
       // Save all changes to the database (flush)
