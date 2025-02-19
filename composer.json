@@ -95,7 +95,9 @@
     "post-update-cmd": [
       "@auto-scripts"
     ],
-    "phpstan": "vendor/bin/phpstan analyse src"
+    "phpstan": "vendor/bin/phpstan analyse src",
+    "twigcs": "php vendor/bin/twig-cs-fixer lint templates/",
+    "twigcs-fix": "php vendor/bin/twig-cs-fixer fix templates/"
   },
   "conflict": {
     "symfony/symfony": "*"
@@ -118,6 +120,7 @@
     "symfony/maker-bundle": "^1.0",
     "symfony/phpunit-bridge": "^7.1",
     "symfony/stopwatch": "7.1.*",
-    "symfony/web-profiler-bundle": "7.1.*"
+    "symfony/web-profiler-bundle": "7.1.*",
+    "vincentlanglet/twig-cs-fixer": "^3.5"
   }
 }

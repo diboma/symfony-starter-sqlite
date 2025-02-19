@@ -2,10 +2,12 @@
 
 namespace App\Controller\Auth;
 
+use App\DTO\User\UserDataDTO;
 use App\Entity\User\User;
 use App\Entity\Auth\UserToken;
 use Psr\Log\LoggerInterface;
 use App\Form\RegistrationFormType;
+use App\Repository\User\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -27,6 +29,7 @@ class RegistrationController extends AbstractController
   public function register(
     Request $request,
     UserPasswordHasherInterface $userPasswordHasher,
+    UserRepository $userRepo,
     Security $security,
     EntityManagerInterface $entityManager,
     MailerInterface $mailer,
@@ -39,12 +42,17 @@ class RegistrationController extends AbstractController
     }
 
     // Create the form and handle form submission
-    $user = new User();
-    $form = $this->createForm(RegistrationFormType::class, $user);
+    $form = $this->createForm(RegistrationFormType::class, new UserDataDTO());
     $form->handleRequest($request);
 
     // Create user if the form was submitted and was valid
     if ($form->isSubmitted() && $form->isValid()) {
+      $user = new User(
+        $form->get('firstName')->getData(),
+        $form->get('lastName')->getData(),
+        $form->get('email')->getData()
+      );
+
       // Encode the plain password
       $user->setPassword(
         $userPasswordHasher->hashPassword(
@@ -53,19 +61,21 @@ class RegistrationController extends AbstractController
         )
       );
 
-      // Set the roles
-      $user->setRoles(['ROLE_USER']);
-      $entityManager->persist($user);
+      // Create a new user token
+      $user->setUserToken(new UserToken($user, uniqid()));
 
-      // Create a verification token
-      $userToken = new UserToken();
-      $userToken->setEmail($user->getEmail());
-      $userToken->setToken(uniqid());
-      $userToken->setCreatedAt(new \DateTimeImmutable());
-      $entityManager->persist($userToken);
+      // Set the roles
+      $userRepo->save($user);
+
+      // // Create a verification token
+      // $userToken = new UserToken();
+      // $userToken->setEmail($user->getEmail());
+      // $userToken->setToken(uniqid());
+      // $userToken->setCreatedAt(new \DateTimeImmutable());
+      // $entityManager->persist($userToken);
 
       // Save all changes to the database (flush)
-      $entityManager->flush();
+      // $entityManager->flush();
 
       // Send the verification email
       $email = (new TemplatedEmail())
@@ -74,7 +84,7 @@ class RegistrationController extends AbstractController
         ->subject($translator->trans('Verify your email'))
         ->htmlTemplate('emails/verify_email.html.twig')
         ->context([
-          'token' => $userToken->getToken()
+          'token' => $user->getUserToken()->getToken(),
         ]);
 
       try {

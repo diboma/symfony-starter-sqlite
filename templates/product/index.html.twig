@@ -5,8 +5,8 @@
 {% block body %}
 
 <div class="position-absolute top-0 end-0 mt-2 me-2">
-  <twig:Button href="{{ path('app_products_new') }}" 
-               variant="btn-success" 
+  <twig:Button href="{{ path('app_products_new') }}"
+               variant="btn-success"
                label="Add a product"
                icon='lucide:circle-plus'/>
 </div>
@@ -22,19 +22,19 @@
   {# Pagination links #}
   <div class="text-center mb-5 d-flex justify-content-center align-items-center gap-3">
     {% if paginator.hasPreviousPage %}
-      <twig:Button href="?page={{ paginator.currentPage - 1 }}" 
-                   variant="btn-outline-dark" 
+      <twig:Button href="?page={{ paginator.currentPage - 1 }}"
+                   variant="btn-outline-dark"
                    class="btn-sm"
                    icon='lucide:chevrons-left'/>
     {% endif %}
 
     <span class="text-muted small">
-      <span class="fs-6">{{ paginator.currentPage }}</span> / {{ paginator.totalPages}}
+      <span class="fs-6">{{ paginator.currentPage }}</span> / {{ paginator.totalPages }}
     </span>
 
     {% if paginator.hasNextPage %}
-      <twig:Button href="?page={{ paginator.currentPage + 1 }}" 
-                   variant="btn-outline-dark" 
+      <twig:Button href="?page={{ paginator.currentPage + 1 }}"
+                   variant="btn-outline-dark"
                    class="btn-sm"
                    icon='lucide:chevrons-right'/>
     {% endif %}
@@ -45,9 +45,9 @@
     <div class="row row-cols-auto gap-4 justify-content-center">
       {% for product in products %}
         <div class="col card card-product shadow" role="button" style="width: 18rem;">
-          <a href="{{ path('app_products_show', {'id': product.id}) }}"
+          <a href="{{ path('app_products_show', {id: product.id}) }}"
              class="link-underline link-underline-opacity-0">
-            <img src="{{ product.image }}" class="p-3 object-fit-contain aspect-ratio-1x1" 
+            <img src="{{ product.image }}" class="p-3 object-fit-contain aspect-ratio-1x1"
                 style="width: 100%; height: 200px;"
                 alt="{{ product.name }}">
             <div class="card-body">

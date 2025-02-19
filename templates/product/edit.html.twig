@@ -1,6 +1,6 @@
-{% extends "layouts/base.html.twig" %}
+{% extends 'layouts/base.html.twig' %}
 
-{% from "macros/forms.html.twig" import error_class %}
+{% from 'macros/forms.html.twig' import error_class %}
 
 {% block title %}Add a product{% endblock %}
 
@@ -12,20 +12,20 @@
     {{ 'Edit product'|trans }}
   </h1>
 
-  {{ form_start(form, { 
-    'attr': { 'class': 'card shadow p-3 mx-auto', 'needs-validation': 'true' }
-    }) 
+  {{ form_start(form, {
+    attr: {class: 'card shadow p-3 mx-auto', 'needs-validation': 'true'},
+    })
   }}
 
     <div class="mb-3">
       {{ form_label(form.name) }}
-      {{ form_widget(form.name,  
+      {{ form_widget(form.name,
           {
-            'attr': {
-              'class': 'form-control' ~ ' ' ~ error_class(form.name.vars.errors)
-            }
-          }
-      )}}
+            attr: {
+              class: 'form-control' ~ ' ' ~ error_class(form.name.vars.errors),
+            },
+          },
+      ) }}
       <div class="form-error">
         {{ form_errors(form.name) }}
       </div>
@@ -33,13 +33,13 @@
 
     <div class="mb-3">
       {{ form_label(form.description) }}
-      {{ form_widget(form.description,  
+      {{ form_widget(form.description,
           {
-            'attr': {
-              'class': 'form-control' ~ ' ' ~ error_class(form.description.vars.errors)
-            }
-          }
-      )}}
+            attr: {
+              class: 'form-control' ~ ' ' ~ error_class(form.description.vars.errors),
+            },
+          },
+      ) }}
       <div class="form-error">
         {{ form_errors(form.description) }}
       </div>
@@ -47,13 +47,13 @@
 
     <div class="mb-3">
       {{ form_label(form.price) }}
-      {{ form_widget(form.price,  
+      {{ form_widget(form.price,
           {
-            'attr': {
-              'class': 'form-control' ~ ' ' ~ error_class(form.price.vars.errors)
-            }
-          }
-      )}}
+            attr: {
+              class: 'form-control' ~ ' ' ~ error_class(form.price.vars.errors),
+            },
+          },
+      ) }}
       <div class="form-error">
         {{ form_errors(form.price) }}
       </div>
@@ -61,13 +61,13 @@
 
     <div class="mb-3">
       {{ form_label(form.category) }}
-      {{ form_widget(form.category,  
+      {{ form_widget(form.category,
           {
-            'attr': {
-              'class': 'form-control' ~ ' ' ~ error_class(form.price.vars.errors)
-            }
-          }
-      )}}
+            attr: {
+              class: 'form-control' ~ ' ' ~ error_class(form.price.vars.errors),
+            },
+          },
+      ) }}
       <div class="form-error">
         {{ form_errors(form.category) }}
       </div>
@@ -75,13 +75,13 @@
 
     <div class="mb-3">
       {{ form_label(form.owner) }}
-      {{ form_widget(form.owner,  
+      {{ form_widget(form.owner,
           {
-            'attr': {
-              'class': 'form-control' ~ ' ' ~ error_class(form.owner.vars.errors)
-            }
-          }
-      )}}
+            attr: {
+              class: 'form-control' ~ ' ' ~ error_class(form.owner.vars.errors),
+            },
+          },
+      ) }}
       <div class="form-error">
         {{ form_errors(form.owner) }}
       </div>
@@ -89,13 +89,13 @@
 
     <div class="mb-3">
       {{ form_label(form.image) }}
-      {{ form_widget(form.image,  
+      {{ form_widget(form.image,
           {
-            'attr': {
-              'class': 'form-control' ~ ' ' ~ error_class(form.image.vars.errors)
-            }
-          }
-      )}}
+            attr: {
+              class: 'form-control' ~ ' ' ~ error_class(form.image.vars.errors),
+            },
+          },
+      ) }}
       <div class="form-error">
         {{ form_errors(form.image) }}
       </div>
@@ -108,7 +108,7 @@
                    label="save"
                    icon='lucide:circle-plus'/>
 
-      <twig:Button href="{{ path('app_products_show', { 'id': app.current_route_parameters.id }) }}"
+      <twig:Button href="{{ path('app_products_show', {id: app.current_route_parameters.id}) }}"
                    variant="btn-outline-dark"
                    class="mb-3 w-100"
                    label="cancel"

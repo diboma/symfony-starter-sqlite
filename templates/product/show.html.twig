@@ -1,4 +1,4 @@
-{% extends "layouts/base.html.twig" %}
+{% extends 'layouts/base.html.twig' %}
 
 {% block title %}{{ product.name }}{% endblock %}
 
@@ -10,12 +10,12 @@
                 label="back"
                 icon='lucide:circle-arrow-left'/>
 
-  <twig:Button  href="{{ path('app_products_edit', {'id': product.id}) }}"
+  <twig:Button  href="{{ path('app_products_edit', {id: product.id}) }}"
                 variant="btn-warning"
                 label="Edit product"
                 icon='lucide:edit'/>
 
-  <twig:Button  href="{{ path('app_products_delete', {'id': product.id}) }}"
+  <twig:Button  href="{{ path('app_products_delete', {id: product.id}) }}"
                 variant="btn-danger"
                 label="Delete product"
                 icon='lucide:trash-2'/>
@@ -40,8 +40,8 @@
 <div class="text-center">
   <p class="text-center text-primary fw-bold fs-3">€ {{ product.price }}</p>
 
-  <img src="{{ product.image }}" 
-       class="img-fluid" 
+  <img src="{{ product.image }}"
+       class="img-fluid"
        alt="{{ product.name }}"
        style="max-width: 320px; object-fit: contain">
 

@@ -10,9 +10,9 @@
     </p>
     <p>
       {{ 'This link will expire in'|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>    
+    </p>
     <p>
-      {{ 'If you don\'t receive an email please check your spam folder'|trans }} 
+      {{ 'If you don\'t receive an email please check your spam folder'|trans }}
       {{ 'or'|trans }} <a href="{{ path('app_forgot_password_request') }}">{{ 'try again'|trans }}</a>.
      </p>
   </div>

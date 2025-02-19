@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>
-			{% block title %}{% endblock %} | {{ APPNAME }}
-		</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}{% endblock %} | {{ APPNAME }}
+        </title>
 
-		<link	rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+        <link    rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 
     {# Bootstrap SCSS #}
     {% block stylesheets %}
@@ -16,19 +16,19 @@
     {% endblock %}
 
     {# Scripts #}
- 		{% block javascripts %}
-			{% block importmap %}
-				{{ importmap('app') }}
-			{% endblock %}
-		{% endblock %}
-	</head>
+         {% block javascripts %}
+            {% block importmap %}
+                {{ importmap('app') }}
+            {% endblock %}
+        {% endblock %}
+    </head>
 
-	<body>
+    <body>
 
     <main class="container py-5 position-relative">
-		  {% block body %}{% endblock %}
+          {% block body %}{% endblock %}
     </main>
 
-	</body>
+    </body>
 
 </html>

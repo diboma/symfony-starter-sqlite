@@ -2,6 +2,7 @@
 
 namespace App\Entity\User;
 
+use App\Entity\Auth\UserToken;
 use App\Entity\Product\Product;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\User\UserRepository;
@@ -22,14 +23,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   /** @phpstan-var int */
   private int $id;
 
-  #[ORM\Column(length: 180)]
-  private string $email;
-
   /**
    * @var list<string> The user roles
    */
   #[ORM\Column]
-  private array $roles = [];
+  private array $roles = ['ROLE_USER'];
 
   /**
    * @var string The hashed password
@@ -37,14 +35,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[ORM\Column]
   private ?string $password = null;
 
-  #[ORM\Column(length: 255)]
-  private ?string $firstName = null;
-
-  #[ORM\Column(length: 255)]
-  private ?string $lastName = null;
-
   #[ORM\Column(length: 255, nullable: true)]
   private ?string $avatarUrl = null;
+
+  #[ORM\OneToOne(targetEntity: UserToken::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
+  private UserToken $userToken;
+
+  #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
+  private bool $email_verified = false;
 
   /**
    * @var Collection<int, Product>
@@ -52,11 +50,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'owner', orphanRemoval: true)]
   private Collection $products;
 
-  #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
-  private bool $email_verified = false;
+  public function __construct(
+    #[ORM\Column(length: 255)]
+    private string $firstName,
 
-  public function __construct()
-  {
+    #[ORM\Column(length: 255)]
+    private ?string $lastName,
+
+    #[ORM\Column(length: 180)]
+    private string $email,
+
+  ) {
     $this->products = new ArrayCollection();
   }
 
@@ -74,6 +78,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   {
     $this->email = $email;
 
+    return $this;
+  }
+
+  public function getUserToken(): UserToken
+  {
+    return $this->userToken;
+  }
+
+  public function setUserToken(UserToken $userToken): static
+  {
+    $this->userToken = $userToken;
     return $this;
   }
 

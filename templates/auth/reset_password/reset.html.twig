@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% from "macros/forms.html.twig" import error_class %}
+{% from 'macros/forms.html.twig' import error_class %}
 
 {% block title %}{{ 'Password reset'|trans }}{% endblock %}
 
@@ -14,18 +14,18 @@
 
       <input type="hidden" name="_csrf_token"
              value="{{ csrf_token('authenticate') }}">
-      
+
       {# {{ form_row(resetForm.plainPassword) }} #}
 
       <div class="mb-3">
         {{ form_label(resetForm.plainPassword.first) }}
-        {{ form_widget(resetForm.plainPassword.first,  
+        {{ form_widget(resetForm.plainPassword.first,
             {
-              'attr': {
-                'class': 'form-control' ~ ' ' ~ error_class(resetForm.plainPassword.first.vars.errors)
-              }
-            }
-        )}}
+              attr: {
+                class: 'form-control' ~ ' ' ~ error_class(resetForm.plainPassword.first.vars.errors),
+              },
+            },
+        ) }}
         <div class="form-error">
           {{ form_errors(resetForm.plainPassword.first) }}
         </div>
@@ -33,18 +33,17 @@
 
       <div class="mb-3">
         {{ form_label(resetForm.plainPassword.second) }}
-        {{ form_widget(resetForm.plainPassword.second,  
+        {{ form_widget(resetForm.plainPassword.second,
             {
-              'attr': {
-                'class': 'form-control' ~ ' ' ~ error_class(resetForm.plainPassword.second.vars.errors)
-              }
-            }
-        )}}
+              attr: {
+                class: 'form-control' ~ ' ' ~ error_class(resetForm.plainPassword.second.vars.errors),
+              },
+            },
+        ) }}
         <div class="form-error">
           {{ form_errors(resetForm.plainPassword.second) }}
         </div>
       </div>
-
 
       <twig:Button type="submit"
                    variant="btn-primary"

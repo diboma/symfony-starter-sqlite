@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% from "macros/forms.html.twig" import error_class %}
+{% from 'macros/forms.html.twig' import error_class %}
 
 {% block title %}{{ 'register'|trans|capitalize }}{% endblock %}
 
@@ -8,24 +8,24 @@
 
 <div class="mx-auto" style="max-width: 320px">
 
-    {{ form_start(registrationForm, { 
-        'attr': { 
-          'class': 'card shadow p-3 mx-auto', 
-          'needs-validation': 'true' 
-        }
-      }) 
+    {{ form_start(registrationForm, {
+        attr: {
+          class: 'card shadow p-3 mx-auto',
+          'needs-validation': 'true',
+        },
+      })
     }}
       <h1 class="h3 mb-3 font-weight-normal text-center">{{ 'register'|trans|capitalize }}</h1>
 
       <div class="mb-3">
         {{ form_label(registrationForm.firstName) }}
-        {{ form_widget(registrationForm.firstName,  
+        {{ form_widget(registrationForm.firstName,
             {
-              'attr': {
-                'class': 'form-control' ~ ' ' ~ error_class(registrationForm.firstName.vars.errors)
-              }
-            }
-        )}}
+              attr: {
+                class: 'form-control' ~ ' ' ~ error_class(registrationForm.firstName.vars.errors),
+              },
+            },
+        ) }}
         <div class="form-error">
           {{ form_errors(registrationForm.firstName) }}
         </div>
@@ -33,13 +33,13 @@
 
       <div class="mb-3">
         {{ form_label(registrationForm.lastName) }}
-        {{ form_widget(registrationForm.lastName,  
+        {{ form_widget(registrationForm.lastName,
             {
-              'attr': {
-                'class': 'form-control' ~ ' ' ~ error_class(registrationForm.lastName.vars.errors)
-              }
-            }
-        )}}
+              attr: {
+                class: 'form-control' ~ ' ' ~ error_class(registrationForm.lastName.vars.errors),
+              },
+            },
+        ) }}
         <div class="form-error">
           {{ form_errors(registrationForm.lastName) }}
         </div>
@@ -47,13 +47,13 @@
 
       <div class="mb-3">
         {{ form_label(registrationForm.email) }}
-        {{ form_widget(registrationForm.email,  
+        {{ form_widget(registrationForm.email,
             {
-              'attr': {
-                'class': 'form-control' ~ ' ' ~ error_class(registrationForm.email.vars.errors)
-              }
-            }
-        )}}
+              attr: {
+                class: 'form-control' ~ ' ' ~ error_class(registrationForm.email.vars.errors),
+              },
+            },
+        ) }}
         <div class="form-error">
           {{ form_errors(registrationForm.email) }}
         </div>
@@ -61,13 +61,13 @@
 
       <div class="mb-3">
         {{ form_label(registrationForm.password.first) }}
-        {{ form_widget(registrationForm.password.first,  
+        {{ form_widget(registrationForm.password.first,
             {
-              'attr': {
-                'class': 'form-control' ~ ' ' ~ error_class(registrationForm.password.first.vars.errors)
-              }
-            }
-        )}}
+              attr: {
+                class: 'form-control' ~ ' ' ~ error_class(registrationForm.password.first.vars.errors),
+              },
+            },
+        ) }}
         <div class="form-error">
           {{ form_errors(registrationForm.password.first) }}
         </div>
@@ -75,13 +75,13 @@
 
       <div class="mb-3">
         {{ form_label(registrationForm.password.second) }}
-        {{ form_widget(registrationForm.password.second,  
+        {{ form_widget(registrationForm.password.second,
             {
-              'attr': {
-                'class': 'form-control' ~ ' ' ~ error_class(registrationForm.password.second.vars.errors)
-              }
-            }
-        )}}
+              attr: {
+                class: 'form-control' ~ ' ' ~ error_class(registrationForm.password.second.vars.errors),
+              },
+            },
+        ) }}
         <div class="form-error">
           {{ form_errors(registrationForm.password.second) }}
         </div>
@@ -96,7 +96,7 @@
           <a href="{{ path('app_login') }}" class="text-center small">
               {{ 'Already have an account?'|trans }}
           </a>
-        </div>  
+        </div>
 
     {{ form_end(registrationForm) }}
 

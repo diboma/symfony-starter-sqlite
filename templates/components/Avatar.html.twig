@@ -6,7 +6,6 @@
   {% set style = 'width: 120px; height: 120px; font-size: 3em;' %}
 {% endif %}
 
-
 <div {{ attributes }}>
     {% if not avatarUrl %}
       <div  class="p-3 rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
@@ -15,15 +14,15 @@
       </div>
     {% else %}
       {% if avatarUrl|contains('https://') %}
-        <img  src="{{ avatarUrl }}" 
-              class="img-fluid rounded-circle" 
+        <img  src="{{ avatarUrl }}"
+              class="img-fluid rounded-circle"
               style="{{ style ~ 'object-fit: contain;' }}">
       {% else %}
-        <img  src="{{ 'images/avatars/' ~ avatarUrl }}" 
-              class="img-fluid rounded-circle" 
+        <img  src="{{ 'images/avatars/' ~ avatarUrl }}"
+              class="img-fluid rounded-circle"
               style="{{ style ~ 'object-fit: contain;' }}">
       {% endif %}
-      
+
     {% endif %}
-    
+
 </div>

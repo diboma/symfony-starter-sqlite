@@ -1,6 +1,6 @@
 {% for type, messages in app.flashes %}
   {% for message in messages %}
-    {# <div class="alert-container position-fixed p-3">  #}
+    {# <div class="alert-container position-fixed p-3"> #}
       <div class="alert alert-{{ type }}">
         {{ message }}
       </div>
@@ -14,7 +14,7 @@
       const alertContainer = document.querySelector('.alert-container')
       if(alertContainer) alertContainer.classList.add('show');
     }, 100);
-    
+
     setTimeout(() => {
       const alertContainer = document.querySelector('.alert-container')
       if(alertContainer) alertContainer.classList.remove('show');

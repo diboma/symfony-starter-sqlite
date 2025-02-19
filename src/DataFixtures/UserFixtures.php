@@ -20,11 +20,8 @@ class UserFixtures extends Fixture
   public function load(ObjectManager $manager): void
   {
     // Create default user
-    $user = new User();
-    $user->setFirstName('Tim');
-    $user->setLastName('Timmers');
+    $user = new User('Tim', 'Timmers', 'tim@example.com');
     $user->setRoles(['ROLE_USER, ROLE_ADMIN']);
-    $user->setEmail('tim@example.com');
     $user->setEmailVerified(true);
     $user->setPassword($this->passwordHasher->hashPassword($user, 'artevelde'));
 
@@ -42,19 +39,15 @@ class UserFixtures extends Fixture
       $email = $firstNameForEmail . '.' . $lastNameForEmail . '@example.be';
 
       // Check if the user already exists
-      $user = $manager->getRepository(User::class)->findOneBy(['email' => $email]);
+      $user = $manager->getRepository(User::class)->findOneByEmail($email);
 
       if ($user) {
         continue;
       }
 
       // Create user
-      $user = new User();
-      $user->setFirstName($firstName);
-      $user->setLastName($lastName);
-      $user->setEmail($email);
+      $user = new User($firstName, $lastName, $email);
       $user->setPassword($this->passwordHasher->hashPassword($user, 'artevelde'));
-      $user->setRoles(['ROLE_USER']);
       $manager->persist($user);
     }
     $manager->flush();

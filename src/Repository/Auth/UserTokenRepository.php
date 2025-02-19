@@ -26,7 +26,7 @@ class UserTokenRepository extends ServiceEntityRepository
 
   public function verifyToken(User $user, string $token): bool
   {
-    $userToken = $this->findOneByEmail($user->getEmail());
+    $userToken = $this->findOneBy(['user' => $user]);
 
     if (!$userToken || $userToken->getToken() !== $token || $userToken->getCreatedAt() < new \DateTime('-1 day')) {
       return false;

@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\User\User;
+use App\DTO\User\UserDataDTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
@@ -59,10 +59,10 @@ class RegistrationFormType extends AbstractType
             'max' => 255,
             'maxMessage' => $this->translator->trans('Your email should have {{ limit }} characters or less'),
           ]),
-          new Regex([
-            'pattern' => '/^[a-zA-Z0-9._%+-]+@sumocoders\.be$/',
-            'message' => $this->translator->trans('email_domain_error', ['{{ domain }}' => 'sumocoders.be']),
-          ]),
+          // new Regex([
+          //   'pattern' => '/^[a-zA-Z0-9._%+-]+@sumocoders\.be$/',
+          //   'message' => $this->translator->trans('email_domain_error', ['{{ domain }}' => 'sumocoders.be']),
+          // ]),
         ],
       ])
       ->add('password', RepeatedType::class, [
@@ -88,7 +88,7 @@ class RegistrationFormType extends AbstractType
   public function configureOptions(OptionsResolver $resolver): void
   {
     $resolver->setDefaults([
-      'data_class' => User::class,
+      'data_class' => UserDataDTO::class,
     ]);
   }
 }
