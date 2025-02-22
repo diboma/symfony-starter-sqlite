@@ -23,6 +23,7 @@ File size is too large: Bestandsgrootte is te groot
 File type not allowed: Bestandstype niet toegestaan
 firstName: voornaam
 forgot_password: wachtwoord vergeten
+Hide: Verberg
 home: home
 If you don't receive an email please check your spam folder: Als je geen e-mail ontvangt, controleer dan je spamfolder
 Image URL: URL van de afbeelding
@@ -72,6 +73,7 @@ Reset your password: Wijzig je wachtwoord
 save: opslaan
 send: verzenden
 Send password reset email: Verstuur e-mail
+Show: Toon
 Something went wrong verifying your email: Er is iets misgegaan bij het verifiëren van je e-mailadres
 submit: verzenden
 The password fields must match: Wachtwoorden komen niet overeen

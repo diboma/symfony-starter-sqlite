@@ -3,6 +3,7 @@ twig:
     globals:
         APPNAME: '%app.name%'
         NAVITEMS: '%app.navItems%'
+    form_themes: ['bootstrap_5_layout.html.twig']
 
 when@test:
     twig:

@@ -24,10 +24,10 @@ class RegistrationFormType extends AbstractType
     $builder
       ->add('firstName', TextType::class, [
         'label' => ucfirst($this->translator->trans('firstName')),
-        'attr' => ['class' => 'form-control'],
+        // 'attr' => ['class' => 'form-control'],
         'constraints' => [
           new NotBlank([
-            'message' => $this->translator->trans('Please enter an email address')
+            'message' => $this->translator->trans('Please enter your first name')
           ]),
           new Length([
             'max' => 255,
@@ -37,10 +37,10 @@ class RegistrationFormType extends AbstractType
       ])
       ->add('lastName', TextType::class, [
         'label' => ucfirst($this->translator->trans('lastName')),
-        'attr' => ['class' => 'form-control'],
+        // 'attr' => ['class' => 'form-control'],
         'constraints' => [
           new NotBlank([
-            'message' => $this->translator->trans('Please enter an email address')
+            'message' => $this->translator->trans('Please enter your last name')
           ]),
           new Length([
             'max' => 255,
@@ -50,7 +50,7 @@ class RegistrationFormType extends AbstractType
       ])
       ->add('email', EmailType::class, [
         'label' => ucfirst($this->translator->trans('email')),
-        'attr' => ['class' => 'form-control'],
+        // 'attr' => ['class' => 'form-control'],
         'constraints' => [
           new NotBlank([
             'message' => $this->translator->trans('Please enter an email address')
@@ -68,10 +68,20 @@ class RegistrationFormType extends AbstractType
       ->add('password', RepeatedType::class, [
         'type' => PasswordType::class,
         'invalid_message' => $this->translator->trans('The password fields must match'),
-        'options' => ['attr' => ['class' => 'form-control']],
+        // 'options' => ['attr' => ['class' => 'form-control']],
         'required' => true,
-        'first_options'  => ['label' => ucfirst($this->translator->trans('password'))],
-        'second_options' => ['label' => ucfirst($this->translator->trans('repeat_password'))],
+        'first_options'  => [
+          'label' => ucfirst($this->translator->trans('password')),
+          'toggle' => true,
+          'visible_label' => null,
+          'hidden_label' => null,
+        ],
+        'second_options' => [
+          'label' => ucfirst($this->translator->trans('repeat_password')),
+          'toggle' => true,
+          'visible_label' => null,
+          'hidden_label' => null,
+        ],
         'constraints' => [
           new NotBlank([
             'message' => $this->translator->trans('Please enter a password')

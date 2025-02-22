@@ -1,18 +1,25 @@
 {
-  "name": "sqlite-symfony-starter",
-  "version": "1.0.0",
-  "description": "## Requirements",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "prettier": "^3.3.3"
-  }
+    "name": "sqlite-symfony-starter",
+    "version": "1.0.0",
+    "description": "## Requirements",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "standardjs": "npx standard \"assets/**/*.js\"",
+        "standardjs-fix": "npx standard \"assets/**/*.js\" --fix",
+        "stylelint": "npx stylelint \"assets/styles/app.scss\"",
+        "stylelint-fix": "npx stylelint \"assets/styles/app.scss\" --fix"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "prettier": "^3.3.3",
+        "standard": "^17.1.2",
+        "stylelint": "^16.14.1",
+        "stylelint-config-standard": "^37.0.0",
+        "stylelint-config-standard-scss": "^14.0.0"
+    }
 }

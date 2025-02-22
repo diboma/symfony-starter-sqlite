@@ -8,14 +8,14 @@
             {% block title %}{% endblock %} | {{ APPNAME }}
         </title>
 
-        <link    rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 
-    {# Bootstrap SCSS #}
-    {% block stylesheets %}
-      <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
-    {% endblock %}
+        {# Bootstrap SCSS #}
+        {% block stylesheets %}
+          <link rel="stylesheet" href="{{ asset('styles/app.scss') }}">
+        {% endblock %}
 
-    {# Scripts #}
+        {# Scripts #}
          {% block javascripts %}
             {% block importmap %}
                 {{ importmap('app') }}

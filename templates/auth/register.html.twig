@@ -8,7 +8,32 @@
 
 <div class="mx-auto" style="max-width: 320px">
 
-    {{ form_start(registrationForm, {
+    <div class="card shadow p-3 mx-auto">
+        {{ form_start(form) }}
+    
+            <h1 class="h3 mb-3 fw-normal text-center">{{ 'register'|trans|capitalize }}</h1>
+
+            {{  form_row(form.firstName) }}
+            {{  form_row(form.lastName) }}
+            {{  form_row(form.email) }}
+            {{  form_row(form.password.first) }}
+            {{  form_row(form.password.second) }}
+    
+            <div class="mt-4 text-center">
+                <twig:Button type="submit"
+                             variant="btn-primary"
+                             class="mb-3 w-100"
+                             label="{{ 'register'|trans|capitalize }}"/>
+
+                <a href="{{ path('app_login') }}" class="text-center small">
+                    {{ 'Already have an account?'|trans }}
+                </a>
+            </div>
+
+        {{ form_end(form) }}
+    </div>
+
+    {# {{ form_start(form, {
         attr: {
           class: 'card shadow p-3 mx-auto',
           'needs-validation': 'true',
@@ -18,72 +43,72 @@
       <h1 class="h3 mb-3 font-weight-normal text-center">{{ 'register'|trans|capitalize }}</h1>
 
       <div class="mb-3">
-        {{ form_label(registrationForm.firstName) }}
-        {{ form_widget(registrationForm.firstName,
+        {{ form_label(form.firstName) }}
+        {{ form_widget(form.firstName,
             {
               attr: {
-                class: 'form-control' ~ ' ' ~ error_class(registrationForm.firstName.vars.errors),
+                class: 'form-control' ~ ' ' ~ error_class(form.firstName.vars.errors),
               },
             },
         ) }}
         <div class="form-error">
-          {{ form_errors(registrationForm.firstName) }}
+          {{ form_errors(form.firstName) }}
         </div>
       </div>
 
       <div class="mb-3">
-        {{ form_label(registrationForm.lastName) }}
-        {{ form_widget(registrationForm.lastName,
+        {{ form_label(form.lastName) }}
+        {{ form_widget(form.lastName,
             {
               attr: {
-                class: 'form-control' ~ ' ' ~ error_class(registrationForm.lastName.vars.errors),
+                class: 'form-control' ~ ' ' ~ error_class(form.lastName.vars.errors),
               },
             },
         ) }}
         <div class="form-error">
-          {{ form_errors(registrationForm.lastName) }}
+          {{ form_errors(form.lastName) }}
         </div>
       </div>
 
       <div class="mb-3">
-        {{ form_label(registrationForm.email) }}
-        {{ form_widget(registrationForm.email,
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email,
             {
               attr: {
-                class: 'form-control' ~ ' ' ~ error_class(registrationForm.email.vars.errors),
+                class: 'form-control' ~ ' ' ~ error_class(form.email.vars.errors),
               },
             },
         ) }}
         <div class="form-error">
-          {{ form_errors(registrationForm.email) }}
+          {{ form_errors(form.email) }}
         </div>
       </div>
 
       <div class="mb-3">
-        {{ form_label(registrationForm.password.first) }}
-        {{ form_widget(registrationForm.password.first,
+        {{ form_label(form.password.first) }}
+        {{ form_widget(form.password.first,
             {
               attr: {
-                class: 'form-control' ~ ' ' ~ error_class(registrationForm.password.first.vars.errors),
+                class: 'form-control' ~ ' ' ~ error_class(form.password.first.vars.errors),
               },
             },
         ) }}
         <div class="form-error">
-          {{ form_errors(registrationForm.password.first) }}
+          {{ form_errors(form.password.first) }}
         </div>
       </div>
 
       <div class="mb-3">
-        {{ form_label(registrationForm.password.second) }}
-        {{ form_widget(registrationForm.password.second,
+        {{ form_label(form.password.second) }}
+        {{ form_widget(form.password.second,
             {
               attr: {
-                class: 'form-control' ~ ' ' ~ error_class(registrationForm.password.second.vars.errors),
+                class: 'form-control' ~ ' ' ~ error_class(form.password.second.vars.errors),
               },
             },
         ) }}
         <div class="form-error">
-          {{ form_errors(registrationForm.password.second) }}
+          {{ form_errors(form.password.second) }}
         </div>
       </div>
 
@@ -98,7 +123,7 @@
           </a>
         </div>
 
-    {{ form_end(registrationForm) }}
+    {{ form_end(form) }} #}
 
 </div>
 

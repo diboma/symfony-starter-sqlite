@@ -12,7 +12,7 @@ Make sure you have the following installed:
 
 ### Initialize the project
 
-- Copy `.env.local.example` to `.env.local` and fill in the Mailer credentials.
+- Create an `.env.local` file. Add `APP_ENV` and `MAILER_DSN` to it.
 - Make sure Docker Desktop is running.
 - Spin up the project with `ddev start`.
 - Install the dependencies by running `ddev composer install`.
