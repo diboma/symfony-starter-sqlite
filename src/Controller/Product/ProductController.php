@@ -2,15 +2,17 @@
 
 namespace App\Controller\Product;
 
-use App\Entity\Product\Product;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Form\ProductFormType;
-use App\Repository\Product\ProductRepository;
+use App\Entity\Product\Product;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\Product\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[IsGranted('ROLE_USER')]
 class ProductController extends AbstractController
@@ -127,5 +129,57 @@ class ProductController extends AbstractController
 
     // Redirect to the product list
     return $this->redirectToRoute('app_products_index');
+  }
+
+  /**
+   * Download PDF of a product
+   */
+  #[Route('/products/{id}/download', name: 'app_products_download')]
+  public function download(Product $product): Response
+  {
+    // Render the template
+    $html = $this->renderView('product/download.html.twig', [
+      'product' => $product
+    ]);
+    $bootstrapPath = $this->getParameter('kernel.project_dir') . '/vendor/twbs/bootstrap/dist/css/bootstrap.min.css';
+    $html = str_replace(
+      '</head>',
+      '<link rel="stylesheet" href="file://' . $bootstrapPath . '"></head>',
+      $html
+    );
+
+    // Set options
+    $options = new Options();
+    $options->set('defaultFont', 'Helvetica');
+    $options->set('isHtml5ParserEnabled', true);
+    $options->set('isRemoteEnabled', true);
+
+    // Create the PDF
+    $dompdf = new Dompdf($options);
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+
+    // return new Response(
+    //   $dompdf->stream('resume', ["Attachment" => false]),
+    //   Response::HTTP_OK,
+    //   ['Content-Type' => 'application/pdf']
+    // );
+
+    // $dompdf->stream("testpdf.pdf", [
+    //   "Attachment" => true
+    // ]);
+
+    return new Response(
+      $dompdf->output(),
+      Response::HTTP_OK,
+      [
+        'Content-Type' => 'application/pdf',
+        // toon de pdf inline, in de browser
+        // 'Content-Disposition' => 'inline; filename="' . $product->getName() . '.pdf"',
+        // download de pdf
+        'Content-Disposition' => 'attachment; filename="' . $product->getName() . '.pdf"',
+      ]
+    );
   }
 }

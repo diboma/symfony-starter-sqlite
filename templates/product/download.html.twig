@@ -1,0 +1,38 @@
+{% extends 'layouts/pdf/download.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center mb-2 text-danger">{{ product.name }}</h1>
+
+<div class="text-center text-secondary my-2">
+  {% if product.owner %}
+    <div>
+      {{ 'owner'|trans|capitalize }}:
+      {{ product.owner.firstName }} {{ product.owner.lastName }}
+    </div>
+  {% endif %}
+
+  <div class="mt-0">
+    {{ 'category'|trans|capitalize }}:
+    {{ product.category.name }} {{ product.category.name }}
+  </div>
+</div>
+
+<div class="text-center">
+  <p class="text-center text-primary fw-bold fs-3">€ {{ product.price }}</p>
+
+  <img src="{{ product.image }}"
+       class="img-fluid"
+       alt="{{ product.name }}"
+       style="max-width: 320px; object-fit: contain">
+
+  <p class="my-3 mx-auto" style="max-width: 70ch">{{ product.description }}</p>
+</div>
+
+<div style="page-break-before:always">
+  <p class="my-3 mx-auto" style="max-width: 70ch">{{ product.description }}</p>
+</div>
+
+{% endblock %}

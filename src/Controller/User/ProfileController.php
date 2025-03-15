@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[IsGranted('ROLE_USER')]
 class ProfileController extends AbstractController
 {
+
   #[Route('/profile', name: 'app_profile')]
   public function index(TranslatorInterface $translator): Response
   {

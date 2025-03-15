@@ -1,7 +1,24 @@
 /********************
+  Imports 
+*********************/
+@import '../../vendor/twbs/bootstrap/scss/functions';
+@import '../../vendor/twbs/bootstrap/scss/variables';
+@import '../../vendor/twbs/bootstrap/scss/mixins';
+
+/********************
   Variable overrides 
 *********************/
 $primary: #900;
+$theme-colors: (
+    'primary': $primary,
+    'secondary': $secondary,
+    'success': $success,
+    'info': $info,
+    'warning': $warning,
+    'danger': $danger,
+    'light': $light,
+    'dark': $dark,
+);
 
 /* Buttons */
 $button-radius: 3rem;
@@ -55,7 +72,8 @@ $breakpoints: (
 /******************
   Import Bootstrap
 *******************/
-@import url('../../vendor/twbs/bootstrap/scss/bootstrap');
+/* stylelint-disable-next-line no-invalid-position-at-import-rule */
+@import '../../vendor/twbs/bootstrap/scss/bootstrap';
 
 /*************
   Custom code 

@@ -19,6 +19,11 @@
                 variant="btn-danger"
                 label="Delete product"
                 icon='lucide:trash-2'/>
+
+  <twig:Button  href="{{ path('app_products_download', {id: product.id}) }}"
+                variant="btn-outline-secondary"
+                label="Download PDF"
+                icon='lucide:download'/>
 </div>
 
 <h1 class="text-center mb-2">{{ product.name }}</h1>
