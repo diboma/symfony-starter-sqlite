@@ -7,12 +7,12 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 #[AsTwigComponent]
 final class Button
 {
-  public ?string $href = null;
-  public ?string $target = null;
+    public ?string $href = null;
+    public ?string $target = null;
 
-  public string $type = 'button';
-  public string $variant = 'btn-primary';
-  public string $label = '';
+    public string $type = 'button';
+    public string $variant = 'btn-primary';
+    public string $label = '';
 
-  public ?string $icon = null;
+    public ?string $icon = null;
 }

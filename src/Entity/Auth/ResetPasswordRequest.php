@@ -11,31 +11,33 @@ use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;
 #[ORM\Entity(repositoryClass: ResetPasswordRequestRepository::class)]
 class ResetPasswordRequest implements ResetPasswordRequestInterface
 {
-  use ResetPasswordRequestTrait;
+    use ResetPasswordRequestTrait;
 
-  #[ORM\Id]
-  #[ORM\GeneratedValue]
-  #[ORM\Column]
-  /** @phpstan-var int */
-  private int $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    /**
+     * @phpstan-var int 
+     */
+    private int $id;
 
-  #[ORM\ManyToOne]
-  #[ORM\JoinColumn(nullable: false)]
-  private User $user;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private User $user;
 
-  public function __construct(User $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken)
-  {
-    $this->user = $user;
-    $this->initialize($expiresAt, $selector, $hashedToken);
-  }
+    public function __construct(User $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken)
+    {
+        $this->user = $user;
+        $this->initialize($expiresAt, $selector, $hashedToken);
+    }
 
-  public function getId(): int
-  {
-    return $this->id;
-  }
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
-  public function getUser(): User
-  {
-    return $this->user;
-  }
+    public function getUser(): User
+    {
+        return $this->user;
+    }
 }

@@ -38,6 +38,9 @@
             "migrations/.gitignore"
         ]
     },
+    "dreadnip/chrome-pdf-bundle": {
+        "version": "0.6.0"
+    },
     "phpstan/phpstan": {
         "version": "2.1",
         "recipe": {

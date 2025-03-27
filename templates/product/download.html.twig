@@ -7,17 +7,20 @@
 <h1 class="text-center mb-2 text-danger">{{ product.name }}</h1>
 
 <div class="text-center text-secondary my-2">
-  {% if product.owner %}
-    <div>
-      {{ 'owner'|trans|capitalize }}:
-      {{ product.owner.firstName }} {{ product.owner.lastName }}
-    </div>
-  {% endif %}
+
+    {% if product.owner %}
+        <div>
+            {{ 'owner'|trans|capitalize }}:
+            {{ product.owner.firstName }} {{ product.owner.lastName }}
+        </div>
+    {% endif %}
 
   <div class="mt-0">
     {{ 'category'|trans|capitalize }}:
     {{ product.category.name }} {{ product.category.name }}
+
   </div>
+
 </div>
 
 <div class="text-center">

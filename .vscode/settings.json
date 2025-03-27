@@ -9,5 +9,31 @@
         "editor.defaultFormatter": "vscode.html-language-features",
         "editor.formatOnSave": true,
         "editor.tabSize": 4
+    },
+    "[php]": {
+        "editor.defaultFormatter": "kokororin.vscode-phpfmt",
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true
+    },
+    "phpfmt.passes": ["PSR2LnAfterNamespace"],
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.php$",
+                "cmd": "composer phpcs-fix"
+            },
+            {
+                "match": "\\.twig$",
+                "cmd": "composer twigcs-fix"
+            },
+            {
+                "match": "\\.js$",
+                "cmd": "composer standardjs-fix"
+            },
+            {
+                "match": "\\.scss$",
+                "cmd": "composer stylelint-fix"
+            }
+        ]
     }
 }

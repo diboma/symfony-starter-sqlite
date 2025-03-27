@@ -3,54 +3,51 @@
 namespace App\Repository\Product;
 
 use App\Entity\Product\Product;
-use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Product>
  */
 class ProductRepository extends ServiceEntityRepository
 {
-  public function __construct(ManagerRegistry $registry)
-  {
-    parent::__construct($registry, Product::class);
-  }
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Product::class);
+    }
 
-  /** @return Paginator<Product> */
-  public function paginate(int $currentPage = 1, int $limit = 10): Paginator
-  {
-    $query = $this->createQueryBuilder('e')
-      ->orderBy('e.id', 'DESC')
-      ->getQuery()
-      ->setFirstResult(($currentPage - 1) * $limit)
-      ->setMaxResults($limit);
+    /**
+     * @return Paginator<Product> 
+     */
+    public function paginate(int $currentPage = 1, int $limit = 10): Paginator
+    {
+        $query = $this->createQueryBuilder('e')
+            ->orderBy('e.id', 'DESC')
+            ->getQuery()
+            ->setFirstResult(($currentPage - 1) * $limit)
+            ->setMaxResults($limit);
 
-    return new Paginator($query, true);
-  }
+        return new Paginator($query, true);
+    }
 
-  //    /**
-  //     * @return Product[] Returns an array of Product objects
-  //     */
-  //    public function findByExampleField($value): array
-  //    {
-  //        return $this->createQueryBuilder('p')
-  //            ->andWhere('p.exampleField = :val')
-  //            ->setParameter('val', $value)
-  //            ->orderBy('p.id', 'ASC')
-  //            ->setMaxResults(10)
-  //            ->getQuery()
-  //            ->getResult()
-  //        ;
-  //    }
+    public function save(Product $product, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($product);
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 
-  //    public function findOneBySomeField($value): ?Product
-  //    {
-  //        return $this->createQueryBuilder('p')
-  //            ->andWhere('p.exampleField = :val')
-  //            ->setParameter('val', $value)
-  //            ->getQuery()
-  //            ->getOneOrNullResult()
-  //        ;
-  //    }
+    public function flush(): void
+    {
+        $this->getEntityManager()->flush();
+    }
+
+    public function delete(Product $product): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->remove($product);
+        $entityManager->flush();
+    }
 }
