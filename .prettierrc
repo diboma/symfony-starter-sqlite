@@ -1,8 +1,17 @@
 {
-    "printWidth": 120,
-    "semi": false,
-    "singleAttributePerLine": false,
-    "singleQuote": true,
-    "tabWidth": 4,
-    "trailingComma": "es5"
+  "printWidth": 120,
+  "semi": false,
+  "singleAttributePerLine": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": {
+        "parser": "scss",
+        "scssSyntax": true
+      }
+    }
+  ]
 }
