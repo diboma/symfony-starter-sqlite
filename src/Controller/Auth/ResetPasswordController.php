@@ -3,9 +3,12 @@
 namespace App\Controller\Auth;
 
 use App\Entity\User\User;
-use App\Form\ChangePasswordFormType;
-use App\Form\ResetPasswordRequestFormType;
+use App\Form\Auth\ChangePasswordForm;
+use App\Form\Auth\ResetPasswordRequestForm;
 use Doctrine\ORM\EntityManagerInterface;
+use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
+use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
+use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,9 +19,6 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
-use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
-use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 #[Route('/reset-password')]
 class ResetPasswordController extends AbstractController
@@ -37,13 +37,13 @@ class ResetPasswordController extends AbstractController
     #[Route('', name: 'app_forgot_password_request')]
     public function request(Request $request, MailerInterface $mailer, TranslatorInterface $translator): Response
     {
-        $form = $this->createForm(ResetPasswordRequestFormType::class);
+        $form = $this->createForm(ResetPasswordRequestForm::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /**
-     * @var string $email 
-*/
+             * @var string $email
+             */
             $email = $form->get('email')->getData();
 
             return $this->processSendingPasswordResetEmail(
@@ -55,7 +55,7 @@ class ResetPasswordController extends AbstractController
 
         return $this->render(
             'auth/reset_password/request.html.twig', [
-            'requestForm' => $form,
+                'requestForm' => $form,
             ]
         );
     }
@@ -74,7 +74,7 @@ class ResetPasswordController extends AbstractController
 
         return $this->render(
             'auth/reset_password/check_email.html.twig', [
-            'resetToken' => $resetToken,
+                'resetToken' => $resetToken,
             ]
         );
     }
@@ -101,8 +101,8 @@ class ResetPasswordController extends AbstractController
 
         try {
             /**
-     * @var User $user 
-*/
+             * @var User $user
+             */
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
             $this->addFlash(
@@ -117,7 +117,7 @@ class ResetPasswordController extends AbstractController
         }
 
         // The token is valid; allow the user to change their password.
-        $form = $this->createForm(ChangePasswordFormType::class);
+        $form = $this->createForm(ChangePasswordForm::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -125,8 +125,8 @@ class ResetPasswordController extends AbstractController
             $this->resetPasswordHelper->removeResetRequest($token);
 
             /**
-     * @var string $plainPassword 
-*/
+             * @var string $plainPassword
+             */
             $plainPassword = $form->get('plainPassword')->getData();
 
             // Encode(hash) the plain password, and set it.
@@ -141,7 +141,7 @@ class ResetPasswordController extends AbstractController
 
         return $this->render(
             'auth/reset_password/reset.html.twig', [
-            'resetForm' => $form,
+                'resetForm' => $form,
             ]
         );
     }
@@ -150,7 +150,7 @@ class ResetPasswordController extends AbstractController
     {
         $user = $this->entityManager->getRepository(User::class)->findOneBy(
             [
-            'email' => $emailFormData,
+                'email' => $emailFormData,
             ]
         );
 
@@ -183,7 +183,7 @@ class ResetPasswordController extends AbstractController
             ->htmlTemplate('emails/reset_password.html.twig')
             ->context(
                 [
-                'resetToken' => $resetToken,
+                    'resetToken' => $resetToken,
                 ]
             );
 

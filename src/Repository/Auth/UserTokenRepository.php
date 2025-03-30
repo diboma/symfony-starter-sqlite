@@ -2,10 +2,10 @@
 
 namespace App\Repository\Auth;
 
-use App\Entity\User\User;
 use App\Entity\Auth\UserToken;
-use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\User\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<UserToken>
@@ -17,10 +17,18 @@ class UserTokenRepository extends ServiceEntityRepository
         parent::__construct($registry, UserToken::class);
     }
 
-    public function save(UserToken $userToken): void
+    public function save(UserToken $userToken, bool $flush = false): void
     {
         $entityManager = $this->getEntityManager();
         $entityManager->persist($userToken);
+        if ($flush) {
+            $entityManager->flush();
+        }
+    }
+
+    public function flush(): void
+    {
+        $entityManager = $this->getEntityManager();
         $entityManager->flush();
     }
 

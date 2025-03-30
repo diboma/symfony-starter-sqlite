@@ -3,7 +3,7 @@
 namespace App\Controller\Product;
 
 use App\Entity\Product\Product;
-use App\Form\ProductFormType;
+use App\Form\Product\Form;
 use App\Repository\Product\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +22,7 @@ class EditController extends AbstractController
 
     public function __invoke(Product $product, Request $request): Response
     {
-        $form = $this->createForm(ProductFormType::class, $product);
+        $form = $this->createForm(Form::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -32,7 +32,7 @@ class EditController extends AbstractController
 
         return $this->render(
             'product/edit.html.twig', [
-            'form' => $form,
+                'form' => $form,
             ]
         );
     }

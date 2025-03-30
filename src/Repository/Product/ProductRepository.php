@@ -18,7 +18,7 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Paginator<Product> 
+     * @return Paginator<Product>
      */
     public function paginate(int $currentPage = 1, int $limit = 10): Paginator
     {
@@ -33,15 +33,17 @@ class ProductRepository extends ServiceEntityRepository
 
     public function save(Product $product, bool $flush = false): void
     {
-        $this->getEntityManager()->persist($product);
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($product);
         if ($flush) {
-            $this->getEntityManager()->flush();
+            $entityManager->flush();
         }
     }
 
     public function flush(): void
     {
-        $this->getEntityManager()->flush();
+        $entityManager = $this->getEntityManager();
+        $entityManager->flush();
     }
 
     public function delete(Product $product): void

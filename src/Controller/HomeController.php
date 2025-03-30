@@ -8,14 +8,14 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_USER')]
+#[Route('/', name: 'app_home')]
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function __invoke(): Response
     {
         return $this->render(
             'home/index.html.twig', [
-            'controller_name' => 'HomeController',
+                'controller_name' => 'HomeController',
             ]
         );
     }

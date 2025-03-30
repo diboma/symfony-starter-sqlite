@@ -3,7 +3,7 @@
 namespace App\Controller\Product;
 
 use App\Entity\Product\Product;
-use App\Form\ProductFormType;
+use App\Form\Product\Form;
 use App\Repository\Product\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ class CreateController extends AbstractController
     {
         // Create the form and handle form submission
         $product = new Product();
-        $form = $this->createForm(ProductFormType::class, $product);
+        $form = $this->createForm(Form::class, $product);
         $form->handleRequest($request);
 
         // Create product if the form was submitted and was valid
@@ -36,7 +36,7 @@ class CreateController extends AbstractController
         // Render the template to create a new product
         return $this->render(
             'product/new.html.twig', [
-            'form' => $form,
+                'form' => $form,
             ]
         );
     }

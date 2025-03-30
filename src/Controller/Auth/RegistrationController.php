@@ -3,23 +3,23 @@
 namespace App\Controller\Auth;
 
 use App\DTO\User\UserDataDTO;
-use App\Entity\User\User;
 use App\Entity\Auth\UserToken;
-use Psr\Log\LoggerInterface;
-use App\Form\RegistrationFormType;
+use App\Entity\User\User;
+use App\Form\Auth\RegistrationForm;
 use App\Repository\User\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\SecurityBundle\Security;
+use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+#[Route('/register', name: 'app_register')]
 class RegistrationController extends AbstractController
 {
 
@@ -27,13 +27,11 @@ class RegistrationController extends AbstractController
     {
     }
 
-    #[Route('/register', name: 'app_register')]
-    public function register(
+    public function __invoke(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
         UserRepository $userRepo,
         Security $security,
-        EntityManagerInterface $entityManager,
         MailerInterface $mailer,
         TranslatorInterface $translator
     ): Response {
@@ -43,11 +41,9 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        // Create the form and handle form submission
-        $form = $this->createForm(RegistrationFormType::class, new UserDataDTO());
+        $form = $this->createForm(RegistrationForm::class, new UserDataDTO());
         $form->handleRequest($request);
 
-        // Create user if the form was submitted and was valid
         if ($form->isSubmitted() && $form->isValid()) {
             $user = new User(
                 $form->get('firstName')->getData(),
@@ -55,7 +51,6 @@ class RegistrationController extends AbstractController
                 $form->get('email')->getData()
             );
 
-            // Encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -63,21 +58,8 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            // Create a new user token
             $user->setUserToken(new UserToken($user, uniqid()));
-
-            // Set the roles
-            $userRepo->save($user);
-
-            // // Create a verification token
-            // $userToken = new UserToken();
-            // $userToken->setEmail($user->getEmail());
-            // $userToken->setToken(uniqid());
-            // $userToken->setCreatedAt(new \DateTimeImmutable());
-            // $entityManager->persist($userToken);
-
-            // Save all changes to the database (flush)
-            // $entityManager->flush();
+            $userRepo->save($user, true);
 
             // Send the verification email
             $email = (new TemplatedEmail())
@@ -87,7 +69,7 @@ class RegistrationController extends AbstractController
                 ->htmlTemplate('emails/verify_email.html.twig')
                 ->context(
                     [
-                    'token' => $user->getUserToken()->getToken(),
+                        'token' => $user->getUserToken()->getToken(),
                     ]
                 );
 
@@ -102,10 +84,9 @@ class RegistrationController extends AbstractController
             return $security->login($user, 'form_login', 'main');
         }
 
-        // Render the registration form
         return $this->render(
             'auth/register.html.twig', [
-            'form' => $form,
+                'form' => $form,
             ]
         );
     }
