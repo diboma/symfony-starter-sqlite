@@ -32,6 +32,12 @@ class AutocompleteForm extends AbstractType
                     'autocomplete' => true,
                     'multiple' => true,
                     'choice_label' => 'name',
+                    'choice_value' => function (Product $product) {
+                        // return $product->getName();
+                        // return $product->getCategory()->getName();
+                        return $product->getId() . '|' . $product->getCategory()->getId();
+                    },
+                    // 'choice_attr' IS NOT WORKING, NOT BEING PASSED
                     // 'choice_attr' => function (Product $product) {
                     //     return ['data-category-id' => $product->getCategory()->getId()];
                     // },
