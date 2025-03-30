@@ -72,8 +72,7 @@ $breakpoints: (
   Import Bootstrap & Tom Select
 *******************************/
 @import '../../vendor/twbs/bootstrap/scss/bootstrap';
-
-// @import '../../node_modules/tom-select/dist/scss/tom-select.bootstrap5';
+@import '../../node_modules/tom-select/dist/scss/tom-select.bootstrap5';
 
 /*************
   Custom code 

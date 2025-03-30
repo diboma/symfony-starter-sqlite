@@ -32,16 +32,31 @@
 
     <h2 class="mt-4">Test autocomplete</h2>
 
-    {{ form_start(form_autocomplete, {
+    {# {{ form_start(form_autocomplete, {
             attr: {
-                'data-controller': 'autocompleteProduct',
-                'data-role': 'formAutocompleteProduct',
+                'data-controller': 'autocomplete-product',
+                'data-role': 'form-autocomplete-product',
             },
         })
     }}
         {{ form_row(form_autocomplete.product) }}
         {{ form_rest(form_autocomplete) }}
-    {{ form_end(form_autocomplete) }}
+    {{ form_end(form_autocomplete) }} #}
+
+    <form data-role="form-autocomplete-product">
+        <select data-controller="tom-select" multiple>
+            {% for product in allProducts %}
+                <option value="{{ product.id }}"
+                        data-option-id="{{ product.id }}"
+                        data-product-name="{{ product.name }}"
+                        data-category-id="{{ product.category.id }}"
+                >
+                    {{ product.name }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-dark">Send</button>
+    </form>
 
 </div>
 {% endblock %}
