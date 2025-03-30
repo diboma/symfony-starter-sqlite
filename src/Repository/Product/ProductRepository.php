@@ -31,6 +31,15 @@ class ProductRepository extends ServiceEntityRepository
         return new Paginator($query, true);
     }
 
+    public function findAllWithCategories(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->addSelect('c') // Voegt de categoriegegevens toe aan de resultaten
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findByNameLike(string $searchTerm): array
     {
         return $this->findAll();

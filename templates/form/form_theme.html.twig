@@ -1,0 +1,30 @@
+{% extends 'bootstrap_5_layout.html.twig' %}
+
+{% block form_label %}
+    {%- if label_html is same as(false) -%}
+        {{- label|trans(label_translation_parameters, translation_domain)|capitalize -}}{{- block('label_asterisk') -}}
+    {%- else -%}
+        {{- label|trans(label_translation_parameters, translation_domain)|capitalize|raw -}}{{- block('label_asterisk') -}}
+    {%- endif -%}
+{% endblock %}
+
+{%- block label_asterisk -%}
+  {%- if required -%}
+    <span title="{{ 'forms.labels.required'|trans }}" class="ms-1 text-danger">*</span>
+  {%- endif -%}
+{%- endblock label_asterisk -%}
+
+{#
+{%- block choice_widget_options -%}
+    {% for choice in choices %}
+        <div
+            data-selectable
+            data-value="{{ choice.value }}"
+            data-category-id="{{ choice.data.categoryId }}"
+            class="{{ choice.attr.class|default('') }}"
+        >
+            {{ choice.label }}
+        </div>
+    {% endfor %}
+{%- endblock choice_widget_options -%}
+ #}

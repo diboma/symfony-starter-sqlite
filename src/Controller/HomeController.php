@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\Product\AutocompleteProduct;
+use App\Form\Product\AutocompleteForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -14,7 +14,7 @@ class HomeController extends AbstractController
 {
     public function __invoke(): Response
     {
-        $formAutocomplete = $this->createForm(AutocompleteProduct::class);
+        $formAutocomplete = $this->createForm(AutocompleteForm::class);
 
         return $this->render(
             'home/index.html.twig', [
