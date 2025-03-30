@@ -3,6 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+
 <style>
   .example-wrapper {
     margin: 1em auto;
@@ -18,13 +19,29 @@
 </style>
 
 <div class="example-wrapper">
-  <h1>Hello {{ controller_name }}! ✅</h1>
 
-  This friendly message is coming from:
-  <ul>
-    <li>Your controller at <code>C:/Users/Dirk/Desktop/sqlite-symfony-starter/src/Controller/HomeController.php</code>
-    </li>
-    <li>Your template at <code>C:/Users/Dirk/Desktop/sqlite-symfony-starter/templates/home/index.html.twig</code></li>
-  </ul>
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+
+    <ul>
+        <li>Your controller at <code>C:/Users/Dirk/Desktop/sqlite-symfony-starter/src/Controller/HomeController.php</code>
+        </li>
+        <li>Your template at <code>C:/Users/Dirk/Desktop/sqlite-symfony-starter/templates/home/index.html.twig</code></li>
+    </ul>
+
+    <h2 class="mt-4">Test autocomplete</h2>
+
+    {{ form_start(form_autocomplete, {
+            attr: {
+                'data-controller': 'autocompleteProduct',
+                'data-role': 'formAutocompleteProduct',
+            },
+        })
+    }}
+        {{ form_row(form_autocomplete.product) }}
+        {{ form_rest(form_autocomplete) }}
+    {{ form_end(form_autocomplete) }}
+
 </div>
 {% endblock %}

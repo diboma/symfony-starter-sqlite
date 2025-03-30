@@ -21,26 +21,26 @@ $theme-colors: (
 );
 
 /* Buttons */
-$button-radius: 3rem;
-$button-padding-x: 1rem;
-$button-padding-y: 0.5rem;
-$btn-border-radius: $button-radius;
-$btn-border-radius-sm: $button-radius;
-$btn-border-radius-lg: $button-radius;
-$btn-padding-x: $button-padding-x;
-$btn-padding-x-sm: $button-padding-x;
-$btn-padding-x-lg: $button-padding-x;
-$btn-padding-y: $button-padding-y;
-$btn-padding-y-sm: $button-padding-y;
-$btn-padding-y-lg: $button-padding-y;
-$navbar-toggler-border-radius: $button-radius;
-$navbar-toggler-border-width: 1px;
+// $button-radius: 3rem;
+// $button-padding-x: 1rem;
+// $button-padding-y: 0.5rem;
+// $btn-border-radius: $button-radius;
+// $btn-border-radius-sm: $button-radius;
+// $btn-border-radius-lg: $button-radius;
+// $btn-padding-x: $button-padding-x;
+// $btn-padding-x-sm: $button-padding-x;
+// $btn-padding-x-lg: $button-padding-x;
+// $btn-padding-y: $button-padding-y;
+// $btn-padding-y-sm: $button-padding-y;
+// $btn-padding-y-lg: $button-padding-y;
+// $navbar-toggler-border-radius: $button-radius;
+// $navbar-toggler-border-width: 1px;
 
 /* Inputs */
-$input-radius: 3rem;
-$input-border-radius: $input-radius;
-$input-border-radius-sm: $input-radius;
-$input-border-radius-lg: $input-radius;
+// $input-radius: 3rem;
+// $input-border-radius: $input-radius;
+// $input-border-radius-sm: $input-radius;
+// $input-border-radius-lg: $input-radius;
 
 /* Mixins */
 $breakpoints: (
@@ -68,11 +68,12 @@ $breakpoints: (
   @include max-width-utility($name, $width);
 }
 
-/******************
-  Import Bootstrap
-*******************/
-/* stylelint-disable-next-line no-invalid-position-at-import-rule */
+/******************************
+  Import Bootstrap & Tom Select
+*******************************/
 @import '../../vendor/twbs/bootstrap/scss/bootstrap';
+
+// @import '../../node_modules/tom-select/dist/scss/tom-select.bootstrap5';
 
 /*************
   Custom code 

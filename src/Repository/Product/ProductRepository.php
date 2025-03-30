@@ -31,6 +31,17 @@ class ProductRepository extends ServiceEntityRepository
         return new Paginator($query, true);
     }
 
+    public function findByNameLike(string $searchTerm): array
+    {
+        return $this->findAll();
+        return $this->createQueryBuilder('p')
+            ->where('p.name LIKE :searchTerm')
+            ->setParameter('searchTerm', '%' . $searchTerm . '%')
+            ->orderBy('p.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function save(Product $product, bool $flush = false): void
     {
         $entityManager = $this->getEntityManager();
