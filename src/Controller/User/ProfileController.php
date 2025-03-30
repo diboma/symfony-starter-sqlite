@@ -13,7 +13,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ProfileController extends AbstractController
 {
 
-    public function index__invoke(TranslatorInterface $translator): Response
+    public function __invoke(TranslatorInterface $translator): Response
     {
         $user = $this->getUser();
         if (null === $user) {
