@@ -8,7 +8,6 @@ use App\Repository\Product\ProductRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 // use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,45 +27,53 @@ class AutocompleteForm extends AbstractType
                 'product',
                 EntityType::class,
                 [
+                    // 'label' => 'EntityType',
                     'class' => Product::class,
+                    'attr' => [
+                        'data-role' => 'autocomplete-product',
+                    ],
                     'autocomplete' => true,
                     'multiple' => true,
                     'choice_label' => 'name',
-                    'choice_value' => function (Product $product) {
-                        // return $product->getName();
-                        // return $product->getCategory()->getName();
-                        return $product->getId() . '|' . $product->getCategory()->getId();
-                    },
-                    // 'choice_attr' IS NOT WORKING, NOT BEING PASSED
-                    // 'choice_attr' => function (Product $product) {
-                    //     return ['data-category-id' => $product->getCategory()->getId()];
+                    // 'choice_value' => function (Product $product) {
+                    //     // return $product->getName();
+                    //     // return $product->getCategory()->getName();
+                    //     return $product->getId() . '|' . $product->getCategory()->getId();
                     // },
+                    'choice_attr' => function ($product) {
+                        return [
+                            'data-product-id' => $product->getId(),
+                            'data-product-name' => $product->getName(),
+                            'data-category-id' => $product->getCategory()->getId(),
+                        ];
+                    },
                 ]
             )
-            ->add(
-                'product_choice',
-                ChoiceType::class,
-                [
-                    // 'choices' => $this->productRepo->findAll(),
-                    'choices' => $this->productRepo->findAllWithCategories(),
-                    'choice_label' => function (Product $product) {
-                        return $product->getName();
-                    },
-                    'choice_value' => function (Product $product) {
-                        // return $product->getName();
-                        // return $product->getCategory()->getName();
-                        return $product->getId() . '|' . $product->getCategory()->getId();
-                    },
-                    // 'choice_attr' IS NOT WORKING, NOT BEING PASSED
-                    // 'choice_attr' => function (Product $product) {
-                    //     return [
-                    //         'data-category-id' => $product->getCategory()->getId(), // Data-attribuut voor de categorie
-                    //     ];
-                    // },
-                    'autocomplete' => true,
-                    'multiple' => true,
-                ]
-            )
+            // ->add(
+            //     'product_choice',
+            //     ChoiceType::class,
+            //     [
+            //         'label' => 'ChoiceType',
+            //         'autocomplete' => true,
+            //         'multiple' => true,
+            //         'choices' => $this->productRepo->findAll(),
+            //         'choice_label' => function (Product $product) {
+            //             return $product->getName();
+            //         },
+            //         // 'choice_value' => function (Product $product) {
+            //         //     // return $product->getName();
+            //         //     // return $product->getCategory()->getName();
+            //         //     return $product->getId() . '|' . $product->getCategory()->getId();
+            //         // },
+            //         'choice_attr' => function ($product) {
+            //             return [
+            //                 'data-product-id' => $product->getId(),
+            //                 'data-product-name' => $product->getName(),
+            //                 'data-category-id' => $product->getCategory()->getId(),
+            //             ];
+            //         },
+            //     ]
+            // )
             // ->add(
             //     'product_input',
             //     TextType::class,

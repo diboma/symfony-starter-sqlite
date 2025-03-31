@@ -30,21 +30,22 @@
         <li>Your template at <code>C:/Users/Dirk/Desktop/sqlite-symfony-starter/templates/home/index.html.twig</code></li>
     </ul>
 
-    <h2 class="mt-4">Test autocomplete</h2>
+    <h2 class="mt-4">Test Symfony UX Autocomplete</h2>
 
-    {# {{ form_start(form_autocomplete, {
+    {{ form_start(form_autocomplete, {
             attr: {
-                'data-controller': 'autocomplete-product',
-                'data-role': 'form-autocomplete-product',
+                'data-controller': 'form-autocomplete-product',
             },
         })
     }}
         {{ form_row(form_autocomplete.product) }}
         {{ form_rest(form_autocomplete) }}
-    {{ form_end(form_autocomplete) }} #}
+    {{ form_end(form_autocomplete) }}
 
-    <form data-role="form-autocomplete-product">
-        <select data-controller="tom-select" multiple>
+    <h2 class="mt-4">Test Tom Selext</h2>
+
+    <form data-role="form-tom-select-product">
+        <select data-controller="tom-select-product" multiple>
             {% for product in allProducts %}
                 <option value="{{ product.id }}"
                         data-option-id="{{ product.id }}"

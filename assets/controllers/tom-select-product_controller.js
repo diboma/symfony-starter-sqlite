@@ -11,7 +11,7 @@ export default class extends Controller {
       }
     })
 
-    const form = document.querySelector('[data-role=form-autocomplete-product]')
+    const form = document.querySelector('[data-role=form-tom-select-product]')
     form.addEventListener('submit', (e) => {
       e.preventDefault()
       const selectedValues = tomSelectInstance.getValue()
