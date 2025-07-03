@@ -66,9 +66,9 @@ class DownloadController extends AbstractController
                 Response::HTTP_OK,
                 [
                     'Content-Type' => 'application/pdf',
-                    // toon de pdf inline, in de browser
+                    // Show PDF inline (in browser)
                     // 'Content-Disposition' => 'inline; filename="' . $product->getName() . '.pdf"',
-                    // download de pdf
+                    // Or: download PDF
                     'Content-Disposition' => 'attachment; filename="' . $product->getName() . '.pdf"',
                 ]
             );
